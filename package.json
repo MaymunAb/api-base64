@@ -13,6 +13,21 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/node": "^24.3.1",
+    "@types/react": "^19.1.12",
     "typescript": "^5.2.2"
-  }
+  },
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maymunab/api-base64.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maymunab/api-base64/issues"
+  },
+  "homepage": "https://github.com/maymunab/api-base64#readme",
+  "description": ""
 }
