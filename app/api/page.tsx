@@ -24,7 +24,7 @@ export default function Home() {
         cols={40}
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Metni buraya yaz..."
+        placeholder="Metini buraya yaz..."
         style={{ display: "block", marginBottom: "1rem" }}
       />
 
