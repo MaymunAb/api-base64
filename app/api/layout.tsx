@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder API",
+  title: "Base64 Encoder API V1",
   description: "Serverless Base64 Encoder with Next.js & Vercel",
 };
 
