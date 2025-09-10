@@ -1,43 +1,81 @@
-"use client";
+import React from "react";
 
-import { useState } from "react";
-
-export default function Home() {
-  const [text, setText] = useState("");
-  const [encoded, setEncoded] = useState("");
-
-  async function encodeText() {
-    const res = await fetch(
-      `/api/encode?text=${encodeURIComponent(text)}&charset=UTF8&destination_new_line_separator=LF`
-    );
-    const data = await res.json();
-    setEncoded(data.encoded || "Error");
-  }
-
+const APIDocsPage = () => {
   return (
-    <div>
-      <h1>Base64 Encoder API</h1>
-      <p>Metin gir, Base64 çıktısını al 👇</p>
+    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+      <h1>API Documentation</h1>
 
-      <textarea
-        rows={5}
-        cols={40}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Metini buraya yaz..."
-        style={{ display: "block", marginBottom: "1rem" }}
-      />
+      <section style={{ marginTop: "2rem" }}>
+        <h2>1. Encode</h2>
+        <p>Base64 encode endpoint.</p>
+        <p>
+          <strong>URL:</strong> <code>/api/encode</code>
+        </p>
+        <p>
+          <strong>Method:</strong> GET or POST
+        </p>
+        <p>
+          <strong>Query Parameters (GET):</strong>
+        </p>
+        <ul>
+          <li><code>text</code> (required): string to encode</li>
+          <li><code>charset</code> (optional): default UTF8</li>
+          <li><code>destination_new_line_separator</code> (optional): LF or CRLF</li>
+        </ul>
+        <p>Example GET:</p>
+        <code>
+          /api/encode?text=Merhaba&charset=UTF8&destination_new_line_separator=LF
+        </code>
+        <p>Example POST JSON body:</p>
+        <pre>
+{`{
+  "text": "Merhaba",
+  "charset": "UTF8",
+  "destination_new_line_separator": "LF"
+}`}
+        </pre>
+        <p>Response:</p>
+        <pre>
+{`{
+  "encoded": "TWVyaGFiYQ=="
+}`}
+        </pre>
+      </section>
 
-      <button onClick={encodeText} style={{ padding: "0.5rem 1rem" }}>
-        Encode Et
-      </button>
-
-      {encoded && (
-        <div style={{ marginTop: "1rem" }}>
-          <h3>Sonuç:</h3>
-          <code>{encoded}</code>
-        </div>
-      )}
-    </div>
+      <section style={{ marginTop: "2rem" }}>
+        <h2>2. Decode</h2>
+        <p>Base64 decode endpoint.</p>
+        <p>
+          <strong>URL:</strong> <code>/api/decode</code>
+        </p>
+        <p>
+          <strong>Method:</strong> GET or POST
+        </p>
+        <p>
+          <strong>Query Parameters (GET):</strong>
+        </p>
+        <ul>
+          <li><code>text</code> (required): base64 string to decode</li>
+          <li><code>charset</code> (optional): default UTF8</li>
+        </ul>
+        <p>Example GET:</p>
+        <code>/api/decode?text=TWVyaGFiYQ==</code>
+        <p>Example POST JSON body:</p>
+        <pre>
+{`{
+  "text": "TWVyaGFiYQ==",
+  "charset": "UTF8"
+}`}
+        </pre>
+        <p>Response:</p>
+        <pre>
+{`{
+  "decoded": "Merhaba"
+}`}
+        </pre>
+      </section>
+    </main>
   );
-}
+};
+
+export default APIDocsPage;
